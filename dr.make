@@ -1,5 +1,7 @@
 ; makefile for dr.dk demo site
 
+; drush -y make --no-core --contrib-destination=sites/all dr.make
+
 ; define core version and drush make compatibility
 
 core = 7.x
