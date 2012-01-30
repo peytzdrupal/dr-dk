@@ -13,3 +13,4 @@ sites/*/private
 
 # Ignore various system files
 .DS_Store
+PATCHES.txt

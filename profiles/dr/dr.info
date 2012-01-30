@@ -1,0 +1,90 @@
+name = DR Demo
+description = Install and configure the dr.dk demonstration site.
+version = 1.x-dev
+core = 7.x
+
+; core modules
+
+dependencies[] = block
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = dblog
+dependencies[] = field
+dependencies[] = field_sql_storage
+dependencies[] = field_ui
+dependencies[] = file
+dependencies[] = filter
+dependencies[] = help
+dependencies[] = image
+dependencies[] = list
+dependencies[] = locale
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = path
+dependencies[] = taxonomy
+dependencies[] = text
+dependencies[] = update
+
+
+; contrib modules
+
+dependencies[] = admin_menu
+dependencies[] = advanced_help
+dependencies[] = coder
+dependencies[] = ctools
+dependencies[] = date
+dependencies[] = date_api
+dependencies[] = date_popup
+dependencies[] = date_views
+dependencies[] = devel
+dependencies[] = diff
+dependencies[] = entity
+dependencies[] = entity_token
+dependencies[] = features
+dependencies[] = feeds
+dependencies[] = feeds_ui
+dependencies[] = field_collection
+dependencies[] = file_entity
+dependencies[] = job_scheduler
+dependencies[] = libraries
+dependencies[] = link
+dependencies[] = media
+dependencies[] = menu_block
+dependencies[] = node_reference
+dependencies[] = page_manager
+dependencies[] = panelizer
+dependencies[] = panels
+dependencies[] = panels_mini
+dependencies[] = pathauto
+dependencies[] = redirect
+dependencies[] = references
+dependencies[] = references_dialog
+dependencies[] = rules
+dependencies[] = rules_admin
+dependencies[] = rules_scheduler
+dependencies[] = services
+dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = transliteration
+dependencies[] = user_reference
+dependencies[] = variable
+dependencies[] = views
+dependencies[] = views_content
+dependencies[] = views_ui
+dependencies[] = workbench
+dependencies[] = workbench_access
+dependencies[] = workbench_media
+dependencies[] = wysiwyg
+
+; custom modules
+
+;dependencies[] = dr_foo
+
+; features
+
+;dr_features[] = dr_article
+
+; files
+
+files[] = dr.profile

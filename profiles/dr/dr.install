@@ -1,0 +1,197 @@
+<?php
+/**
+ * @file
+ * Install file for the DR Demo installation profile.
+ */
+
+/* --- HOOKS ---------------------------------------------------------------- */
+
+/**
+ * Implements hook_install().
+ */
+function dr_install() {
+  $filtered_html_format = array(
+    'format' => 'filtered_html',
+    'name' => 'Filtered HTML',
+    'weight' => 0,
+    'filters' => array(
+      // HTML filter.
+      'filter_html' => array(
+        'weight' => 0,
+        'status' => 1,
+        'settings' => array(
+          'allowed_html' => '<a> <em> <strong> <cite> <blockquote> <ul> <ol> <li> <dl> <dt> <dd> <img> <p> <pre> <div>',
+          'filter_html_help' => 0,
+          'filter_html_nofollow' => 0,
+        ),
+      ),
+      // Media filter.
+      'media_filter' => array(
+        'weight' => 2,
+        'status' => 1,
+      ),
+      // URL filter.
+      'filter_url' => array(
+        'weight' => 3,
+        'status' => 1,
+      ),
+      // HTML corrector filter.
+      'filter_htmlcorrector' => array(
+        'weight' => 10,
+        'status' => 1,
+      ),
+    ),
+  );
+  $filtered_html_format = (object) $filtered_html_format;
+  filter_format_save($filtered_html_format);
+
+  $default_theme = variable_get('theme_default', 'bartik');
+  $admin_theme = 'seven';
+  $values = array(
+    array(
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -11,
+      'region' => 'content',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'workbench',
+      'delta' => 'block',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'content',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'content',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'user',
+      'delta' => 'login',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -11,
+      'region' => 'sidebar_first',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'menu',
+      'delta' => 'devel',
+      'theme' => $default_theme,
+      'status' => 1,
+      'weight' => -10,
+      'region' => 'sidebar_first',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+
+    array(
+      'module' => 'system',
+      'delta' => 'help',
+      'theme' => $admin_theme,
+      'status' => 1,
+      'weight' => 0,
+      'region' => 'content',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'system',
+      'delta' => 'main',
+      'theme' => $admin_theme,
+      'status' => 1,
+      'weight' => 1,
+      'region' => 'content',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+  );
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'title', 'cache'));
+  foreach ($values as $record) {
+    $query->values($record);
+  }
+  $query->execute();
+
+  // enable default permissions for system roles
+  $filtered_html_permission = filter_permission_name($filtered_html_format);
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access comments', 'access content', $filtered_html_permission));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access comments', 'access content', $filtered_html_permission));
+
+  // create a default role for site administrators, with all available permissions assigned.
+  $admin_role = new stdClass();
+  $admin_role->name = 'administrator';
+  $admin_role->weight = 2;
+  user_role_save($admin_role);
+  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
+  // Set this as the administrator role.
+  variable_set('user_admin_role', $admin_role->rid);
+
+  // assign user 1 the "administrator" role
+  db_insert('users_roles')
+    ->fields(array('uid' => 1, 'rid' => $admin_role->rid))
+    ->execute();
+
+  theme_enable(array('learn', 'seven'));
+  $variables = array(
+    'admin_theme' => 'seven',
+    'admin_menu_tweak_modules' => 1,
+    'clean_url' => 1,
+    'configurable_timezones' => 0,
+    'date_first_day' => 1,
+    'date_format_long' => 'l, j. F Y - G:i',
+    'date_format_medium' => 'D, d/m/Y - H:i',
+    'date_format_short' => 'd/m/Y - H:i',
+    'file_public_path' => 'sites/default/files',
+    'node_admin_theme' => 1,
+    'page_compression' => 0,
+    'pathauto_ignore_words' => 'ad, af, alle, alt, anden, at, blev, blive, bliver, da, de, dem, den, denne, der, deres, det, dette, dig, din, disse, dog, du, efter, eller, en, end, er, et, for, fra, ham, han, hans, har, havde, have, hende, hendes, her, hos, hun, hvad, hvis, hvor, i, ikke, ind, jeg, jer, jo, kunne, man, mange, med, meget, men, mig, min, mine, mit, mod, ned, noget, nogle, nu, når, og, også, om, op, os, over, på, selv, sig, sin, sine, sit, skal, skulle, som, sådan, thi, til, ud, under, var, vi, vil, ville, vor, være, været',
+    'pathauto_punctuation_slash' => 2, // to make custom book token work
+    'pathauto_transliterate' => 1,
+    'theme_default' => 'bartik',
+    'user_register' => USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL,
+  );
+  foreach ($variables as $key => $variable) {
+    variable_set($key, $variable);
+  }
+
+  // configure ckeditor
+  $formats = array(
+    array(
+      'format' => 'filtered_html',
+      'editor' => 'ckeditor',
+      'settings' => 'a:20:{s:7:"default";i:1;s:11:"user_choose";i:0;s:11:"show_toggle";i:0;s:5:"theme";s:8:"advanced";s:8:"language";s:2:"da";s:7:"buttons";a:3:{s:7:"default";a:9:{s:4:"Bold";i:1;s:6:"Italic";i:1;s:12:"BulletedList";i:1;s:12:"NumberedList";i:1;s:4:"Link";i:1;s:6:"Unlink";i:1;s:10:"Blockquote";i:1;s:6:"Source";i:1;s:5:"Table";i:1;}s:5:"geshi";a:8:{s:12:"Geshi-apache";i:1;s:9:"Geshi-css";i:1;s:9:"Geshi-ini";i:1;s:11:"Geshi-mysql";i:1;s:9:"Geshi-php";i:1;s:12:"Geshi-puppet";i:1;s:12:"Geshi-robots";i:1;s:10:"Geshi-ruby";i:1;}s:6:"drupal";a:1:{s:5:"media";i:1;}}s:11:"toolbar_loc";s:3:"top";s:13:"toolbar_align";s:4:"left";s:8:"path_loc";s:6:"bottom";s:8:"resizing";i:1;s:11:"verify_html";i:1;s:12:"preformatted";i:0;s:22:"convert_fonts_to_spans";i:1;s:17:"remove_linebreaks";i:0;s:23:"apply_source_formatting";i:0;s:27:"paste_auto_cleanup_on_paste";i:0;s:13:"block_formats";s:32:"p,address,pre,h2,h3,h4,h5,h6,div";s:11:"css_setting";s:5:"theme";s:8:"css_path";s:0:"";s:11:"css_classes";s:0:"";}',
+    ),
+    array(
+      'format' => 'plain_text',
+      'editor' => '',
+      'settings' => '',
+    ),
+  );
+
+  $query = db_insert('wysiwyg')->fields(array('format', 'editor', 'settings'));
+  foreach ($formats as $format) {
+    $query->values($format);
+  }
+  $query->execute();
+}
