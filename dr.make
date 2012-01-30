@@ -31,6 +31,9 @@ projects[diff][version] = 2.0
 projects[entity][subdir] = contrib
 projects[entity][version] = 1.0-rc1
 
+projects[entity_token][subdir] = contrib
+projects[entity_token][version] = 1.0-rc1
+
 projects[features][subdir] = contrib
 projects[features][version] = 1.0-beta5
 
@@ -38,7 +41,7 @@ projects[feeds][subdir] = contrib
 projects[feeds][version] = 2.0-alpha4
 
 projects[field_collection][subdir] = contrib
-projects[field_collection][version] = 1.x-dev
+projects[field_collection][version] = 1.0-beta3
 
 projects[field_group][subdir] = contrib
 projects[field_group][version] = 1.1
@@ -83,7 +86,7 @@ projects[references][subdir] = contrib
 projects[references][version] = 2.0
 
 projects[references_dialog][subdir] = contrib
-projects[references_dialog][version] = 1.0-alpha1
+projects[references_dialog][version] = 1.0-alpha3
 
 projects[rules][subdir] = contrib
 projects[rules][version] = 2.0
@@ -104,7 +107,7 @@ projects[variable][subdir] = contrib
 projects[variable][version] = 1.1
 
 projects[views][subdir] = contrib
-projects[views][version] = 3.0
+projects[views][version] = 3.1
 
 projects[views_bulk_operations][subdir] = contrib
 projects[views_bulk_operations][version] = 3.0-beta3
