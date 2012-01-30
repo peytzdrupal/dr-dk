@@ -60,6 +60,8 @@ projects[link][version] = 1.0
 
 projects[media][subdir] = contrib
 projects[media][version] = 2.x-dev
+; http://drupal.org/node/1311828
+projects[media][patch][] = http://drupal.org/files/media-install-error-1311828-28.patch
 
 projects[menu_block][subdir] = contrib
 projects[menu_block][version] = 2.x-dev
