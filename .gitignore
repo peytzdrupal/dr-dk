@@ -1,6 +1,15 @@
 # Ignore configuration files that may contain sensitive information.
 sites/*/settings*.php
 
+# ...but allow our default settings just this once.
+!sites/default/settings.php
+
 # Ignore paths that contain user-generated content.
 sites/*/files
 sites/*/private
+
+# ...but make sure the default files directory is part of the repository.
+!sites/default/files
+
+# Ignore various system files
+.DS_Store

@@ -1,0 +1,5 @@
+# Ignore all uploaded files...
+*
+
+# ...except this file to make sure the directory can be part of the repository.
+!.gitignore
