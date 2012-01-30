@@ -31,9 +31,6 @@ projects[diff][version] = 2.0
 projects[entity][subdir] = contrib
 projects[entity][version] = 1.0-rc1
 
-projects[entity_token][subdir] = contrib
-projects[entity_token][version] = 1.0-rc1
-
 projects[features][subdir] = contrib
 projects[features][version] = 1.0-beta5
 
