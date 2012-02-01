@@ -182,7 +182,7 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'drupal_dr',
+      'database' => 'dr',
       'username' => 'dr',
       'password' => 'dr',
       'host' => 'localhost',
