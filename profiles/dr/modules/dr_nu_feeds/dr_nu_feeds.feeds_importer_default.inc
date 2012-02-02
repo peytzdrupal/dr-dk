@@ -32,12 +32,16 @@ function dr_nu_feeds_feeds_importer_default() {
         'sources' => array(
           'jsonpath_parser:0' => 'title',
           'jsonpath_parser:1' => 'description',
+          'jsonpath_parser:2' => 'label',
+          'jsonpath_parser:3' => 'slug',
         ),
         'debug' => array(
           'options' => array(
             'context' => 0,
             'jsonpath_parser:0' => 0,
             'jsonpath_parser:1' => 0,
+            'jsonpath_parser:2' => 0,
+            'jsonpath_parser:3' => 0,
           ),
         ),
       ),
@@ -45,7 +49,7 @@ function dr_nu_feeds_feeds_importer_default() {
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'content_type' => 'dummy',
+        'content_type' => 'series',
         'expire' => '-1',
         'author' => 0,
         'mappings' => array(
@@ -58,6 +62,16 @@ function dr_nu_feeds_feeds_importer_default() {
             'source' => 'jsonpath_parser:1',
             'target' => 'body',
             'unique' => FALSE,
+          ),
+          2 => array(
+            'source' => 'jsonpath_parser:2',
+            'target' => 'field_label',
+            'unique' => FALSE,
+          ),
+          3 => array(
+            'source' => 'jsonpath_parser:3',
+            'target' => 'guid',
+            'unique' => 1,
           ),
         ),
         'update_existing' => '2',
@@ -91,18 +105,80 @@ function dr_nu_feeds_feeds_importer_default() {
     'parser' => array(
       'plugin_key' => 'FeedsJSONPathParser',
       'config' => array(
-        'context' => '',
-        'sources' => array(),
-        'debug' => array(),
+        'context' => '$.*',
+        'sources' => array(
+          'jsonpath_parser:0' => 'title',
+          'jsonpath_parser:1' => 'description',
+          'jsonpath_parser:2' => 'id',
+          'jsonpath_parser:3' => 'broadcastTime',
+          'jsonpath_parser:4' => 'broadcastTime',
+          'jsonpath_parser:5' => 'broadcastChannel',
+          'jsonpath_parser:6' => 'id',
+          'jsonpath_parser:7' => 'duration',
+        ),
+        'debug' => array(
+          'options' => array(
+            'context' => 0,
+            'jsonpath_parser:0' => 0,
+            'jsonpath_parser:1' => 0,
+            'jsonpath_parser:2' => 0,
+            'jsonpath_parser:3' => 0,
+            'jsonpath_parser:4' => 0,
+            'jsonpath_parser:5' => 0,
+            'jsonpath_parser:6' => 0,
+            'jsonpath_parser:7' => 0,
+          ),
+        ),
       ),
     ),
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'content_type' => 'dummy',
+        'content_type' => 'video',
         'expire' => '-1',
         'author' => 0,
-        'mappings' => array(),
+        'mappings' => array(
+          0 => array(
+            'source' => 'jsonpath_parser:0',
+            'target' => 'title',
+            'unique' => FALSE,
+          ),
+          1 => array(
+            'source' => 'jsonpath_parser:1',
+            'target' => 'body',
+            'unique' => FALSE,
+          ),
+          2 => array(
+            'source' => 'jsonpath_parser:2',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          3 => array(
+            'source' => 'jsonpath_parser:3',
+            'target' => 'field_broadcast_time:start',
+            'unique' => FALSE,
+          ),
+          4 => array(
+            'source' => 'jsonpath_parser:4',
+            'target' => 'field_broadcast_time:end',
+            'unique' => FALSE,
+          ),
+          5 => array(
+            'source' => 'jsonpath_parser:5',
+            'target' => 'field_broadcast_channel',
+            'unique' => FALSE,
+          ),
+          6 => array(
+            'source' => 'jsonpath_parser:6',
+            'target' => 'field_dr_nu_id',
+            'unique' => FALSE,
+          ),
+          7 => array(
+            'source' => 'jsonpath_parser:7',
+            'target' => 'field_video_duration',
+            'unique' => FALSE,
+          ),
+        ),
         'update_existing' => '2',
         'input_format' => 'plain_text',
       ),
