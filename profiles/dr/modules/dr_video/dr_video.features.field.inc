@@ -225,7 +225,7 @@ function dr_video_field_default_fields() {
           'text_parts' => array(),
           'year_range' => '-3:+3',
         ),
-        'type' => 'date_text',
+        'type' => 'date_popup',
         'weight' => '33',
       ),
       'workbench_access_field' => 0,
@@ -289,6 +289,89 @@ function dr_video_field_default_fields() {
         'settings' => array(),
         'type' => 'number',
         'weight' => '32',
+      ),
+      'workbench_access_field' => 0,
+    ),
+  );
+
+  // Exported field: 'node-video-field_series_reference'
+  $fields['node-video-field_series_reference'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_series_reference',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'target_entity' => array(
+          0 => 'target_type',
+          1 => 'target_id',
+        ),
+      ),
+      'module' => 'entityreference',
+      'settings' => array(
+        'handler' => 'base',
+        'handler_settings' => array(
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'nid',
+            'type' => 'none',
+          ),
+          'target_bundles' => array(
+            'series' => 'series',
+          ),
+        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
+      ),
+      'translatable' => '0',
+      'type' => 'entityreference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'video',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 6,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_series_reference',
+      'label' => 'Series',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'entityreference',
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'path' => '',
+          'references_dialog_add' => 0,
+          'references_dialog_edit' => 0,
+          'references_dialog_search' => 0,
+          'references_dialog_search_view' => '',
+          'size' => '60',
+        ),
+        'type' => 'entityreference_autocomplete',
+        'weight' => '38',
       ),
       'workbench_access_field' => 0,
     ),
@@ -449,6 +532,7 @@ function dr_video_field_default_fields() {
   t('Broadcast Time');
   t('DR NU ID');
   t('Duration');
+  t('Series');
   t('Video image');
 
   return $fields;
