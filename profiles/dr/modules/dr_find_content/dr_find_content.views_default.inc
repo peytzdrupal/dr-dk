@@ -164,6 +164,34 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['fields']['type']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['type']['link_to_node'] = 0;
   $handler->display->display_options['fields']['type']['machine_name'] = 0;
+  /* Field: Content: Review average */
+  $handler->display->display_options['fields']['field_review_average']['id'] = 'field_review_average';
+  $handler->display->display_options['fields']['field_review_average']['table'] = 'field_data_field_review_average';
+  $handler->display->display_options['fields']['field_review_average']['field'] = 'field_review_average';
+  $handler->display->display_options['fields']['field_review_average']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_review_average']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_review_average']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_review_average']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_review_average']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_review_average']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_review_average']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_review_average']['field_api_classes'] = 0;
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -305,6 +333,7 @@ function dr_find_content_views_default_views() {
     t('<strong>[title]</strong><br/>
 [body]'),
     t('Type'),
+    t('Review average'),
     t('Søg'),
     t('Broadcast Channel'),
     t('Broadcast Time'),
