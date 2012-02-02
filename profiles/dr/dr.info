@@ -78,12 +78,17 @@ dependencies[] = workbench_media
 dependencies[] = wysiwyg
 
 ; custom modules
+; dependencies[] = dr_foo
 
-;dependencies[] = dr_foo
+dependencies[] = dr_series
 
 ; features
 
 ;dr_features[] = dr_article
+dependencies[] = dr_video
+dependencies[] = dr_series
+dependencies[] = dr_review
+
 
 ; files
 
