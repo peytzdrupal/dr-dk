@@ -1,0 +1,54 @@
+<?php
+/**
+ * @file
+ * Code for the DR Nu feeds feature.
+ */
+
+include_once('dr_nu_feeds.features.inc');
+
+/**
+ * Implements hook_menu().
+ */
+function dr_nu_feeds_menu() {
+  $items['admin/dr_nu_feeds'] = array(
+    'title' => 'Import DR NU',
+    'access arguments' => array('administer content'),
+    'page callback' => 'dr_nu_feeds_import_page',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * Page callback.
+ */
+function dr_nu_feeds_import_page() {
+  dr_nu_feeds_import();
+}
+
+/**
+ * Trigger import.
+ */
+function dr_nu_feeds_import() {
+  $form_state = array(
+    'values' => array(
+      'feeds' => array(
+        'FeedsHTTPFetcher' => array(
+          'source' => 'http://www.dr.dk/nu/api/programseries',
+        ),
+      ),
+    ),
+  );
+  drupal_form_submit('feeds_import_form', $form_state, 'dr_now_series');
+
+  $form_state = array(
+    'values' => array(
+      'feeds' => array(
+        'FeedsHTTPFetcher' => array(
+          'source' => 'http://www.dr.dk/nu/api/videos/all',
+        ),
+      ),
+    ),
+  );
+  drupal_form_submit('feeds_import_form', $form_state, 'dr_now_videos');
+}
