@@ -23,7 +23,9 @@ function dr_nu_feeds_menu() {
  * Page callback.
  */
 function dr_nu_feeds_import_page() {
+  module_load_include('inc', 'feeds', 'feeds.pages');
   dr_nu_feeds_import();
+  return "Imported (hopefully)";
 }
 
 /**
