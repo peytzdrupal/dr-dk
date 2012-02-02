@@ -83,6 +83,11 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 0;
   $handler->display->display_options['style_options']['empty_table'] = 0;
+  /* Relationship: Entity Reference: Referencing entity */
+  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['id'] = 'reverse_field_video_reference_node';
+  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['field'] = 'reverse_field_video_reference_node';
+  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['required'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -219,6 +224,59 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   $handler->display->display_options['filters']['keys']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Content: Broadcast Channel (field_broadcast_channel) */
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['id'] = 'field_broadcast_channel_value';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['table'] = 'field_data_field_broadcast_channel';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['field'] = 'field_broadcast_channel_value';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['operator_id'] = 'field_broadcast_channel_value_op';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['label'] = 'Broadcast Channel';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['operator'] = 'field_broadcast_channel_value_op';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['identifier'] = 'field_broadcast_channel_value';
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['required'] = 0;
+  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Content: Broadcast Time (field_broadcast_time) */
+  $handler->display->display_options['filters']['field_broadcast_time_value']['id'] = 'field_broadcast_time_value';
+  $handler->display->display_options['filters']['field_broadcast_time_value']['table'] = 'field_data_field_broadcast_time';
+  $handler->display->display_options['filters']['field_broadcast_time_value']['field'] = 'field_broadcast_time_value';
+  $handler->display->display_options['filters']['field_broadcast_time_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['operator_id'] = 'field_broadcast_time_value_op';
+  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['label'] = 'Broadcast Time';
+  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['operator'] = 'field_broadcast_time_value_op';
+  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['identifier'] = 'field_broadcast_time_value';
+  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Content: Review critic (field_review_critic) */
+  $handler->display->display_options['filters']['field_review_critic_tid']['id'] = 'field_review_critic_tid';
+  $handler->display->display_options['filters']['field_review_critic_tid']['table'] = 'field_data_field_review_critic';
+  $handler->display->display_options['filters']['field_review_critic_tid']['field'] = 'field_review_critic_tid';
+  $handler->display->display_options['filters']['field_review_critic_tid']['relationship'] = 'reverse_field_video_reference_node';
+  $handler->display->display_options['filters']['field_review_critic_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_review_critic_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_review_critic_tid']['expose']['operator_id'] = 'field_review_critic_tid_op';
+  $handler->display->display_options['filters']['field_review_critic_tid']['expose']['label'] = 'Review critic';
+  $handler->display->display_options['filters']['field_review_critic_tid']['expose']['operator'] = 'field_review_critic_tid_op';
+  $handler->display->display_options['filters']['field_review_critic_tid']['expose']['identifier'] = 'field_review_critic_tid';
+  $handler->display->display_options['filters']['field_review_critic_tid']['expose']['multiple'] = 1;
+  $handler->display->display_options['filters']['field_review_critic_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_review_critic_tid']['vocabulary'] = 'review_critics';
+  $handler->display->display_options['filters']['field_review_critic_tid']['error_message'] = 1;
+  /* Filter criterion: Content: Review source (field_review_source) */
+  $handler->display->display_options['filters']['field_review_source_tid']['id'] = 'field_review_source_tid';
+  $handler->display->display_options['filters']['field_review_source_tid']['table'] = 'field_data_field_review_source';
+  $handler->display->display_options['filters']['field_review_source_tid']['field'] = 'field_review_source_tid';
+  $handler->display->display_options['filters']['field_review_source_tid']['relationship'] = 'reverse_field_video_reference_node';
+  $handler->display->display_options['filters']['field_review_source_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_review_source_tid']['expose']['operator_id'] = 'field_review_source_tid_op';
+  $handler->display->display_options['filters']['field_review_source_tid']['expose']['label'] = 'Review source (field_review_source)';
+  $handler->display->display_options['filters']['field_review_source_tid']['expose']['operator'] = 'field_review_source_tid_op';
+  $handler->display->display_options['filters']['field_review_source_tid']['expose']['identifier'] = 'field_review_source_tid';
+  $handler->display->display_options['filters']['field_review_source_tid']['expose']['multiple'] = 1;
+  $handler->display->display_options['filters']['field_review_source_tid']['expose']['reduce'] = 0;
+  $handler->display->display_options['filters']['field_review_source_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_review_source_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_review_source_tid']['vocabulary'] = 'review_sources';
+  $handler->display->display_options['filters']['field_review_source_tid']['error_message'] = 1;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -236,12 +294,17 @@ function dr_find_content_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
+    t('Content referencing Content from field_video_reference'),
     t('Titel'),
     t('Beskrivelse'),
     t('<strong>[title]</strong><br/>
 [body]'),
     t('Type'),
     t('Søg'),
+    t('Broadcast Channel'),
+    t('Broadcast Time'),
+    t('Review critic'),
+    t('Review source (field_review_source)'),
     t('Page'),
   );
   $export['find_content'] = $view;
