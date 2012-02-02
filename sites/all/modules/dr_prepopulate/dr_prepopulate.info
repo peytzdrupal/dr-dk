@@ -1,0 +1,5 @@
+name = "dr_prepopulate"
+description = "Prepopulate"
+core = "7.x"
+package = "Features"
+dependencies[] = "prepopulate"
