@@ -25,7 +25,6 @@ dependencies[] = path
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = update
-dependencies[] = dr_series
 
 
 ; contrib modules
@@ -79,8 +78,9 @@ dependencies[] = workbench_media
 dependencies[] = wysiwyg
 
 ; custom modules
+; dependencies[] = dr_foo
 
-;dependencies[] = dr_foo
+dependencies[] = dr_series
 
 ; features
 
