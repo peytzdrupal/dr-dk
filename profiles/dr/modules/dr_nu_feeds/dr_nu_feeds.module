@@ -52,3 +52,36 @@ function dr_nu_feeds_import() {
   );
   drupal_form_submit('feeds_import_form', $form_state, 'dr_now_videos');
 }
+
+/**
+ * Implements hook_feeds_parser_sources_alter().
+ */
+function dr_nu_feeds_feeds_parser_sources_alter(&$sources, $content_type) {
+  $sources['dr:video:image'] = array(
+    'name' => t('Image'),
+    'description' => t('An image related to a video.'),
+    'callback' => '_dr_nu_feeds_get_image',
+  );
+}
+
+/**
+ * Callback for downloading an image related to a video.
+ */
+function _dr_nu_feeds_get_image($source, FeedsParserResult $result, $key) {
+  $item = $result->currentItem();
+
+  // grab the video id and create an image url
+  $guid = $item['json_parse:6'];
+  $image_url = 'http://www.dr.dk/nu/api/videos/' . $guid . '/images/1024x768.jpg';
+
+  $image = file_get_contents($image_url);
+  if ($image !== FALSE) {
+    $destination = 'temporary://' . md5($image) . '.jpg';
+    $destination = file_save_data($image, $destination);
+    if ($destination !== FALSE) {
+      // silly hack because file_feeds_set_target() can't grok file objects
+      $path = '/tmp/' . $destination->filename;
+      return $path;
+    }
+  }
+}
