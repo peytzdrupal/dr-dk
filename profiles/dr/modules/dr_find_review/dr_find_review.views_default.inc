@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * dr_find_content.views_default.inc
+ * dr_find_review.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function dr_find_content_views_default_views() {
+function dr_find_review_views_default_views() {
   $export = array();
 
   $view = new view;
-  $view->name = 'find_content';
+  $view->name = 'find_review';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Find Content';
+  $view->human_name = 'Find review';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -83,11 +83,16 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['style_options']['override'] = 1;
   $handler->display->display_options['style_options']['sticky'] = 0;
   $handler->display->display_options['style_options']['empty_table'] = 0;
-  /* Relationship: Entity Reference: Referencing entity */
-  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['id'] = 'reverse_field_video_reference_node';
-  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['table'] = 'node';
-  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['field'] = 'reverse_field_video_reference_node';
-  $handler->display->display_options['relationships']['reverse_field_video_reference_node']['required'] = 0;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_video_reference_target_id']['id'] = 'field_video_reference_target_id';
+  $handler->display->display_options['relationships']['field_video_reference_target_id']['table'] = 'field_data_field_video_reference';
+  $handler->display->display_options['relationships']['field_video_reference_target_id']['field'] = 'field_video_reference_target_id';
+  $handler->display->display_options['relationships']['field_video_reference_target_id']['required'] = 0;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_series_reference_target_id']['id'] = 'field_series_reference_target_id';
+  $handler->display->display_options['relationships']['field_series_reference_target_id']['table'] = 'field_data_field_series_reference';
+  $handler->display->display_options['relationships']['field_series_reference_target_id']['field'] = 'field_series_reference_target_id';
+  $handler->display->display_options['relationships']['field_series_reference_target_id']['required'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -141,6 +146,83 @@ function dr_find_content_views_default_views() {
     'trim_length' => '100',
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_video_reference_target_id';
+  $handler->display->display_options['fields']['title_1']['label'] = 'Video';
+  $handler->display->display_options['fields']['title_1']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title_1']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title_1']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title_1']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title_1']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title_1']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title_1']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title_1']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title_1']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title_1']['link_to_node'] = 1;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_2']['id'] = 'title_2';
+  $handler->display->display_options['fields']['title_2']['table'] = 'node';
+  $handler->display->display_options['fields']['title_2']['field'] = 'title';
+  $handler->display->display_options['fields']['title_2']['relationship'] = 'field_series_reference_target_id';
+  $handler->display->display_options['fields']['title_2']['label'] = 'Series';
+  $handler->display->display_options['fields']['title_2']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title_2']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title_2']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title_2']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title_2']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title_2']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title_2']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title_2']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title_2']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title_2']['link_to_node'] = 1;
+  /* Field: Content: Review rating */
+  $handler->display->display_options['fields']['field_review_rating']['id'] = 'field_review_rating';
+  $handler->display->display_options['fields']['field_review_rating']['table'] = 'field_data_field_review_rating';
+  $handler->display->display_options['fields']['field_review_rating']['field'] = 'field_review_rating';
+  $handler->display->display_options['fields']['field_review_rating']['label'] = 'Rating';
+  $handler->display->display_options['fields']['field_review_rating']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_review_rating']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_review_rating']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_review_rating']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_review_rating']['settings'] = array(
+    'thousand_separator' => ' ',
+    'decimal_separator' => '.',
+    'scale' => '2',
+    'prefix_suffix' => 1,
+  );
+  $handler->display->display_options['fields']['field_review_rating']['field_api_classes'] = 0;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
@@ -202,12 +284,9 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'all' => 'all',
-    'series' => 'series',
-    'video' => 'video',
+    'review' => 'review',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
   $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
@@ -224,28 +303,6 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
   $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
   $handler->display->display_options['filters']['keys']['expose']['multiple'] = FALSE;
-  /* Filter criterion: Content: Broadcast Channel (field_broadcast_channel) */
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['id'] = 'field_broadcast_channel_value';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['table'] = 'field_data_field_broadcast_channel';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['field'] = 'field_broadcast_channel_value';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['operator'] = 'contains';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['operator_id'] = 'field_broadcast_channel_value_op';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['label'] = 'Broadcast Channel';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['operator'] = 'field_broadcast_channel_value_op';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['identifier'] = 'field_broadcast_channel_value';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['required'] = 0;
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['multiple'] = FALSE;
-  /* Filter criterion: Content: Broadcast Time (field_broadcast_time) */
-  $handler->display->display_options['filters']['field_broadcast_time_value']['id'] = 'field_broadcast_time_value';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['table'] = 'field_data_field_broadcast_time';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['field'] = 'field_broadcast_time_value';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['operator_id'] = 'field_broadcast_time_value_op';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['label'] = 'Broadcast Time';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['operator'] = 'field_broadcast_time_value_op';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['identifier'] = 'field_broadcast_time_value';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['multiple'] = FALSE;
   /* Filter criterion: Content: Review critic (field_review_critic) */
   $handler->display->display_options['filters']['field_review_critic_tid']['id'] = 'field_review_critic_tid';
   $handler->display->display_options['filters']['field_review_critic_tid']['table'] = 'field_data_field_review_critic';
@@ -265,7 +322,6 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['filters']['field_review_source_tid']['id'] = 'field_review_source_tid';
   $handler->display->display_options['filters']['field_review_source_tid']['table'] = 'field_data_field_review_source';
   $handler->display->display_options['filters']['field_review_source_tid']['field'] = 'field_review_source_tid';
-  $handler->display->display_options['filters']['field_review_source_tid']['relationship'] = 'reverse_field_video_reference_node';
   $handler->display->display_options['filters']['field_review_source_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_review_source_tid']['expose']['operator_id'] = 'field_review_source_tid_op';
   $handler->display->display_options['filters']['field_review_source_tid']['expose']['label'] = 'Review source';
@@ -280,13 +336,13 @@ function dr_find_content_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'admin/dr-content';
+  $handler->display->display_options['path'] = 'admin/dr-reviews';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Videos and series';
+  $handler->display->display_options['menu']['title'] = 'Reviews';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'management';
   $handler->display->display_options['menu']['context'] = 0;
-  $translatables['find_content'] = array(
+  $translatables['find_review'] = array(
     t('Master'),
     t('Find Content'),
     t('more'),
@@ -299,20 +355,22 @@ function dr_find_content_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
-    t('Content referencing Content from field_video_reference'),
+    t('Content entity referenced from field_video_reference'),
+    t('Content entity referenced from field_series_reference'),
     t('Titel'),
     t('Beskrivelse'),
     t('<strong>[title]</strong><br/>
 [body]'),
+    t('Video'),
+    t('Series'),
+    t('Rating'),
     t('Type'),
     t('Søg'),
-    t('Broadcast Channel'),
-    t('Broadcast Time'),
     t('Review critic'),
     t('Review source'),
     t('Page'),
   );
-  $export['find_content'] = $view;
+  $export['find_review'] = $view;
 
   return $export;
 }

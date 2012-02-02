@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dr_find_review feature.
+ */
+
+include_once('dr_find_review.features.inc');
