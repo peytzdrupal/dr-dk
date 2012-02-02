@@ -1,6 +1,20 @@
 <?php
 /**
  * @file
+ * Add a link to videos and series to create a review referencing this node
  */
 
-// Drupal needs this blank file.
+/**
+ * Implements hook_node_view().
+ */
+function dr_prepopulate_node_view($node, $view_mode) {
+  // on video and series nodes in full view_mode
+  if (in_array($node->type, array('video', 'series')) && $view_mode == 'full') {
+    // add a link to create a review referencing this node
+    $node->content['links']['node']['#links']['dr_prepopulate'] = array(
+      'href' => 'node/add/review',
+      'query' => array('edit[field_' . $node->type . '_reference][und][0][target_id]' => "$node->title ($node->nid)"),
+      'title' => t('Create review for this !node', array('!node' => $node->type)),
+    );
+  }
+}
