@@ -57,7 +57,8 @@ function views_references_views_default_views() {
   $handler->display->display_options['arguments']['field_series_reference_target_id']['id'] = 'field_series_reference_target_id';
   $handler->display->display_options['arguments']['field_series_reference_target_id']['table'] = 'field_data_field_series_reference';
   $handler->display->display_options['arguments']['field_series_reference_target_id']['field'] = 'field_series_reference_target_id';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_series_reference_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_series_reference_target_id']['default_argument_type'] = 'node';
   $handler->display->display_options['arguments']['field_series_reference_target_id']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['field_series_reference_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_series_reference_target_id']['summary']['format'] = 'default_summary';
@@ -107,7 +108,7 @@ function views_references_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Reviews of videos';
+  $handler->display->display_options['title'] = 'Reviews of video';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -142,7 +143,8 @@ function views_references_views_default_views() {
   $handler->display->display_options['arguments']['field_video_reference_target_id']['id'] = 'field_video_reference_target_id';
   $handler->display->display_options['arguments']['field_video_reference_target_id']['table'] = 'field_data_field_video_reference';
   $handler->display->display_options['arguments']['field_video_reference_target_id']['field'] = 'field_video_reference_target_id';
-  $handler->display->display_options['arguments']['field_video_reference_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_video_reference_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_video_reference_target_id']['default_argument_type'] = 'node';
   $handler->display->display_options['arguments']['field_video_reference_target_id']['default_argument_skip_url'] = 0;
   $handler->display->display_options['arguments']['field_video_reference_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_video_reference_target_id']['summary']['format'] = 'default_summary';
@@ -168,7 +170,7 @@ function views_references_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'block');
   $translatables['review_video_and_series'] = array(
     t('Master'),
-    t('Reviews of videos'),
+    t('Reviews of video'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -192,7 +194,7 @@ function views_references_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Series: Videos';
+  $handler->display->display_options['title'] = 'Latest videos';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -223,17 +225,6 @@ function views_references_views_default_views() {
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Series (field_series_reference:target_id) */
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['id'] = 'field_series_reference_target_id';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['table'] = 'field_data_field_series_reference';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['field'] = 'field_series_reference_target_id';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['default_argument_type'] = 'fixed';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['default_argument_skip_url'] = 0;
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['break_phrase'] = 0;
-  $handler->display->display_options['arguments']['field_series_reference_target_id']['not'] = 0;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -253,14 +244,13 @@ function views_references_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'block');
   $translatables['series_videos'] = array(
     t('Master'),
-    t('Series: Videos'),
+    t('Latest videos'),
     t('more'),
     t('Apply'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('All'),
     t('Block'),
   );
   $export['series_videos'] = $view;
