@@ -1,0 +1,48 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function views_references_install() {
+  $blocks = array(
+    array(
+      'module' => 'views',
+      'delta' => 'review_series-block',
+      'theme' => 'bartik',
+      'status' => 1,
+      'weight' => -11,
+      'region' => 'sidebar_second',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'review_video_and_series-block',
+      'theme' => 'bartik',
+      'status' => 1,
+      'weight' => -12,
+      'region' => 'sidebar_second',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+    array(
+      'module' => 'views',
+      'delta' => 'series_videos-block',
+      'theme' => 'bartik',
+      'status' => 1,
+      'weight' => -13,
+      'region' => 'sidebar_second',
+      'pages' => '',
+      'title' => '',
+      'cache' => -1,
+    ),
+  );
+
+  $query = db_insert('block')->fields(array('module', 'delta', 'theme', 'status', 'weight', 'region', 'pages', 'title', 'cache'));
+  foreach ($blocks as $block) {
+    $query->values($block);
+  }
+  $query->execute();
+}
