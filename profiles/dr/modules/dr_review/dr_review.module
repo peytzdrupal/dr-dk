@@ -5,3 +5,64 @@
  */
 
 include_once('dr_review.features.inc');
+
+/**
+ * Implements hook_node_save().
+ */
+function dr_review_node_save($node) {
+  dr_review_update_average($node);
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function dr_review_node_update($node) {
+  dr_review_update_average($node);
+}
+
+/**
+ * Update average ratings on nodes referenced by this node.
+ */
+function dr_review_update_average($node) {
+  if ($node->type != 'review') {
+    return;
+  }
+  $fields = array(
+    'field_series_reference',
+    'field_video_reference'
+  );
+  foreach ($fields as $field_name) {
+    if (!empty($node->{$field_name}['und'])) {
+      foreach ($node->{$field_name}['und'] as $index => $value) {
+        if ($value['target_id']) {
+          dr_review_update_average_for_node($value['target_id']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Update average for given node id.
+ */
+function dr_review_update_average_for_node($nid) {
+  $node = node_load($nid);
+
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node');
+  $query->propertyCondition('type', 'review');
+  $query->fieldCondition('field_' . $node->type . '_reference', 'target_id', $node->nid);
+  $result = $query->execute();
+
+  $total = $sum = 0;
+  if (!empty($result['node'])) {
+    foreach ($result['node'] as $result) {
+      $review_node = node_load($result->nid);
+      $sum += $review_node->field_review_rating['und'][0]['value'];
+      $total++;
+    }
+  }
+  $average = $total > 1 ? $sum/$total : 0;
+  $node->field_review_average['und'][0]['value'] = $average;
+  node_save($node);
+}
