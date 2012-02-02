@@ -80,6 +80,7 @@ dependencies[] = wysiwyg
 ; custom modules
 
 ;dependencies[] = dr_foo
+dependencies[] = dr_video
 
 ; features
 
