@@ -268,7 +268,7 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['filters']['field_review_source_tid']['relationship'] = 'reverse_field_video_reference_node';
   $handler->display->display_options['filters']['field_review_source_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_review_source_tid']['expose']['operator_id'] = 'field_review_source_tid_op';
-  $handler->display->display_options['filters']['field_review_source_tid']['expose']['label'] = 'Review source (field_review_source)';
+  $handler->display->display_options['filters']['field_review_source_tid']['expose']['label'] = 'Review source';
   $handler->display->display_options['filters']['field_review_source_tid']['expose']['operator'] = 'field_review_source_tid_op';
   $handler->display->display_options['filters']['field_review_source_tid']['expose']['identifier'] = 'field_review_source_tid';
   $handler->display->display_options['filters']['field_review_source_tid']['expose']['multiple'] = 1;
@@ -281,6 +281,11 @@ function dr_find_content_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['path'] = 'admin/dr-content';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Videos and series';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['context'] = 0;
   $translatables['find_content'] = array(
     t('Master'),
     t('Find Content'),
@@ -304,7 +309,7 @@ function dr_find_content_views_default_views() {
     t('Broadcast Channel'),
     t('Broadcast Time'),
     t('Review critic'),
-    t('Review source (field_review_source)'),
+    t('Review source'),
     t('Page'),
   );
   $export['find_content'] = $view;
