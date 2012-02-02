@@ -34,34 +34,87 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'filtered_html';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '20';
-  $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['row_options']['inline'] = array(
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
+    'body' => 'body',
+    'field_broadcast_time' => 'field_broadcast_time',
+    'type' => 'type',
+    'field_dr_nu_id' => 'field_dr_nu_id',
   );
-  $handler->display->display_options['row_options']['hide_empty'] = 0;
-  $handler->display->display_options['row_options']['default_field_elements'] = 1;
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'body' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_broadcast_time' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'type' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_dr_nu_id' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['override'] = 1;
+  $handler->display->display_options['style_options']['sticky'] = 0;
+  $handler->display->display_options['style_options']['empty_table'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['label'] = 'Titel';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 0;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 0;
   $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['body']['label'] = 'Beskrivelse';
+  $handler->display->display_options['fields']['body']['alter']['alter_text'] = 1;
+  $handler->display->display_options['fields']['body']['alter']['text'] = '<strong>[title]</strong><br/>
+[body]';
   $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
   $handler->display->display_options['fields']['body']['alter']['external'] = 0;
@@ -83,35 +136,6 @@ function dr_find_content_views_default_views() {
     'trim_length' => '100',
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
-  /* Field: Content: Broadcast Time */
-  $handler->display->display_options['fields']['field_broadcast_time']['id'] = 'field_broadcast_time';
-  $handler->display->display_options['fields']['field_broadcast_time']['table'] = 'field_data_field_broadcast_time';
-  $handler->display->display_options['fields']['field_broadcast_time']['field'] = 'field_broadcast_time';
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['field_broadcast_time']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_broadcast_time']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_broadcast_time']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_broadcast_time']['settings'] = array(
-    'format_type' => 'short',
-    'fromto' => 'both',
-    'multiple_number' => '',
-    'multiple_from' => '',
-    'multiple_to' => '',
-  );
-  $handler->display->display_options['fields']['field_broadcast_time']['field_api_classes'] = 0;
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
@@ -135,32 +159,27 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['fields']['type']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['type']['link_to_node'] = 0;
   $handler->display->display_options['fields']['type']['machine_name'] = 0;
-  /* Field: Content: DR NU ID */
-  $handler->display->display_options['fields']['field_dr_nu_id']['id'] = 'field_dr_nu_id';
-  $handler->display->display_options['fields']['field_dr_nu_id']['table'] = 'field_data_field_dr_nu_id';
-  $handler->display->display_options['fields']['field_dr_nu_id']['field'] = 'field_dr_nu_id';
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['field_dr_nu_id']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_dr_nu_id']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_dr_nu_id']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_dr_nu_id']['settings'] = array(
-    'thousand_separator' => ' ',
-    'prefix_suffix' => 1,
-  );
-  $handler->display->display_options['fields']['field_dr_nu_id']['field_api_classes'] = 0;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['edit_node']['hide_alter_empty'] = 1;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -173,49 +192,12 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Title */
-  $handler->display->display_options['filters']['title']['id'] = 'title';
-  $handler->display->display_options['filters']['title']['table'] = 'node';
-  $handler->display->display_options['filters']['title']['field'] = 'title';
-  $handler->display->display_options['filters']['title']['operator'] = 'contains';
-  $handler->display->display_options['filters']['title']['group'] = 1;
-  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Title';
-  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
-  $handler->display->display_options['filters']['title']['expose']['required'] = 0;
-  $handler->display->display_options['filters']['title']['expose']['multiple'] = FALSE;
-  /* Filter criterion: Content: Broadcast Channel (field_broadcast_channel) */
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['id'] = 'field_broadcast_channel_value';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['table'] = 'field_data_field_broadcast_channel';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['field'] = 'field_broadcast_channel_value';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['operator'] = 'contains';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['operator_id'] = 'field_broadcast_channel_value_op';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['label'] = 'Broadcast Channel';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['operator'] = 'field_broadcast_channel_value_op';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['identifier'] = 'field_broadcast_channel_value';
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['required'] = 0;
-  $handler->display->display_options['filters']['field_broadcast_channel_value']['expose']['multiple'] = FALSE;
-  /* Filter criterion: Content: DR NU ID (field_dr_nu_id) */
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['id'] = 'field_dr_nu_id_value';
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['table'] = 'field_data_field_dr_nu_id';
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['field'] = 'field_dr_nu_id_value';
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['expose']['operator_id'] = 'field_dr_nu_id_value_op';
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['expose']['label'] = 'DR NU ID';
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['expose']['operator'] = 'field_dr_nu_id_value_op';
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['expose']['identifier'] = 'field_dr_nu_id_value';
-  $handler->display->display_options['filters']['field_dr_nu_id_value']['expose']['multiple'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'review' => 'review',
+    'all' => 'all',
     'series' => 'series',
     'video' => 'video',
   );
@@ -225,23 +207,22 @@ function dr_find_content_views_default_views() {
   $handler->display->display_options['filters']['type']['expose']['label'] = 'Type';
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
-  $handler->display->display_options['filters']['type']['expose']['multiple'] = 1;
   $handler->display->display_options['filters']['type']['expose']['reduce'] = 1;
-  /* Filter criterion: Content: Broadcast Time (field_broadcast_time) */
-  $handler->display->display_options['filters']['field_broadcast_time_value']['id'] = 'field_broadcast_time_value';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['table'] = 'field_data_field_broadcast_time';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['field'] = 'field_broadcast_time_value';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_broadcast_time_value']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['operator_id'] = 'field_broadcast_time_value_op';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['label'] = 'Broadcast Time';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['operator'] = 'field_broadcast_time_value_op';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['identifier'] = 'field_broadcast_time_value';
-  $handler->display->display_options['filters']['field_broadcast_time_value']['expose']['multiple'] = FALSE;
+  /* Filter criterion: Search: Search Terms */
+  $handler->display->display_options['filters']['keys']['id'] = 'keys';
+  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
+  $handler->display->display_options['filters']['keys']['field'] = 'keys';
+  $handler->display->display_options['filters']['keys']['group'] = 1;
+  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['keys']['expose']['operator_id'] = 'keys_op';
+  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Søg';
+  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
+  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
+  $handler->display->display_options['filters']['keys']['expose']['multiple'] = FALSE;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'find-content';
+  $handler->display->display_options['path'] = 'admin/dr-content';
   $translatables['find_content'] = array(
     t('Master'),
     t('Find Content'),
@@ -255,12 +236,12 @@ function dr_find_content_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
-    t('Body'),
-    t('Broadcast Time'),
+    t('Titel'),
+    t('Beskrivelse'),
+    t('<strong>[title]</strong><br/>
+[body]'),
     t('Type'),
-    t('DR NU ID'),
-    t('Title'),
-    t('Broadcast Channel'),
+    t('Søg'),
     t('Page'),
   );
   $export['find_content'] = $view;
