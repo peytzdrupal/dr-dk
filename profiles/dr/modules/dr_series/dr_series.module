@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dr_series feature.
+ */
+
+include_once('dr_series.features.inc');
