@@ -25,6 +25,7 @@ dependencies[] = path
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = update
+dependencies[] = dr_series
 
 
 ; contrib modules
