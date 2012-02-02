@@ -73,6 +73,11 @@ function dr_nu_feeds_feeds_importer_default() {
             'target' => 'guid',
             'unique' => 1,
           ),
+          4 => array(
+            'source' => 'dr:video:image',
+            'target' => 'field_series_image',
+            'unique' => FALSE,
+          ),
         ),
         'update_existing' => '2',
         'input_format' => 'plain_text',
@@ -176,6 +181,11 @@ function dr_nu_feeds_feeds_importer_default() {
           7 => array(
             'source' => 'jsonpath_parser:7',
             'target' => 'field_video_duration',
+            'unique' => FALSE,
+          ),
+          8 => array(
+            'source' => 'dr:video:image',
+            'target' => 'field_video_image',
             'unique' => FALSE,
           ),
         ),
