@@ -89,6 +89,7 @@ dependencies[] = dr_video
 dependencies[] = dr_series
 dependencies[] = dr_review
 dependencies[] = dr_find_content
+dependencies[] = dr_find_review
 
 
 ; files
