@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the dr_video feature.
+ */
+
+include_once('dr_video.features.inc');
